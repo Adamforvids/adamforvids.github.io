@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Video Website</title>
+  <style>
+    /* Black background container */
+    .video-container {
+      background-color: black;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+    
+    /* Video styling */
+    .video-player {
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    /* Styling for fallback links */
+    .video-player a {
+      color: white;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="video-container">
+    <!-- Video will go here - we'll update this after setting up Cloudinary -->
+    <video controls class="video-player" id="myVideo">
+      <source src="YOUR_VIDEO_WEBM_URL_WILL_GO_HERE" type="video/webm">
+      <source src="YOUR_VIDEO_MP4_URL_WILL_GO_HERE" type="video/mp4">
+      Video not supported in your browser.
+    </video>
+  </div>
+  
+  <script>
+    // Get the video element
+    const video = document.getElementById('myVideo');
+    
+    // Add event listener for when play is clicked
+    video.addEventListener('play', function() {
+      // Check if the video is already playing
+      if (!video.paused && !video.ended) {
+        // Request fullscreen based on browser support
+        if (video.requestFullscreen) {
+          video.requestFullscreen();
+        } else if (video.webkitRequestFullscreen) { /* Safari */
+          video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { /* IE11 */
+          video.msRequestFullscreen();
+        }
+      }
+    });
+  </script>
+</body>
+</html>
